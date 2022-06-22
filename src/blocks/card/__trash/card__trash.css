@@ -1,4 +1,4 @@
-.cards__trash {
+.card__trash {
     background-image: url('../../../images/Trash.svg');
     background-color: rgba(255,255,0,0);
     background-size: contain;
@@ -15,6 +15,6 @@
     position: absolute;
 }
 
-.cards__trash:hover {
+.card__trash:hover {
     opacity: 0.5;
 }

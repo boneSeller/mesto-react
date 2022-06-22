@@ -53,15 +53,15 @@
 @import url('./blocks/elements/elements.css');
 
 /*CARDS*/
-@import url('./blocks/cards/cards.css');
-@import url('./blocks/cards/__image/cards__image.css');
-@import url('./blocks/cards/__description/cards__description.css');
-@import url('./blocks/cards/__text/cards__text.css');
-@import url('./blocks/cards/__container/cards__container.css');
-@import url('./blocks/cards/__like/cards__like.css');
-@import url('./blocks/cards/__like/__counter/cards__like__counter.css');
-@import url('./blocks/cards/__like/_active/cards__like_active.css');
-@import url('./blocks/cards/__trash/cards__trash.css');
+@import url('./blocks/card/card.css');
+@import url('./blocks/card/__image/card__image.css');
+@import url('./blocks/card/__description/card__description.css');
+@import url('./blocks/card/__text/card__text.css');
+@import url('./blocks/card/__container/card__container.css');
+@import url('./blocks/card/__like/card__like.css');
+@import url('./blocks/card/__like/__counter/card__like__counter.css');
+@import url('./blocks/card/__like/_active/card__like_active.css');
+@import url('./blocks/card/__trash/card__trash.css');
 
 
 /*COPYRIGHT*/
