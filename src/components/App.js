@@ -15,6 +15,12 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [selectedCard, setSelectedCard] = React.useState({})
+
+
+    function handleCardClick(card) {
+      setSelectedCard(card)
+    }
 
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true)
@@ -22,22 +28,22 @@ function App() {
 
 
 
-function handleEditProfileClick() {
-    setIsEditProfilePopupOpen(true);
-}
+    function handleEditProfileClick() {
+        setIsEditProfilePopupOpen(true);
+    }
 
 
 
-function handleAddPlaceClick() {
-    setIsAddPlacePopupOpen(true);
-}
+    function handleAddPlaceClick() {
+          setIsAddPlacePopupOpen(true);
+    }
 
-function closeAllPopups() {
-    setIsEditAvatarPopupOpen(false); 
-    setIsAddPlacePopupOpen(false);
-    setIsEditProfilePopupOpen(false);
-
-   }
+    function closeAllPopups() {
+        setIsEditAvatarPopupOpen(false); 
+        setIsAddPlacePopupOpen(false);
+        setIsEditProfilePopupOpen(false);
+        setSelectedCard({});
+      }
 
 
   return (
@@ -50,8 +56,24 @@ function closeAllPopups() {
         <Main  
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
-        onEditAvatar={handleEditAvatarClick} />
+        onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick} />
         <Footer />
+        <PopupWithForm 
+        name="avatar" 
+        title="Обновить аватар"
+        submitName="Сохранить"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}>
+          <input
+            id="useravatar"
+            name="avatar"
+            type="url"
+            placeholder="Ссылка на картинку"
+            className="popup__input"
+            required />
+        <span className="popup__error  useravatar-error"></span>
+        </PopupWithForm>
         <PopupWithForm
         name="profile"
         title="Редактировать профиль"
@@ -59,24 +81,24 @@ function closeAllPopups() {
         onClose={closeAllPopups}>
             <input
             required
-            id="name"
+            id="username"
             name="name"
             type="text"
             minLength="2"
             maxLength="40"
             className="popup__input"
             placeholder="Имя" />
-            <span className="popup__error popup__error_visible name-error" />
+            <span className="popup__error  username-error" />
             <input
             required
-            id="job"
+            id="userjob"
             name="about"
             type="text"
             minLength="2"
             maxLength="200"
             className="popup__input"
             placeholder="Профессиональная деятельность" />
-            <span className="popup__error popup__error_visible job-error" />
+            <span className="popup__error  userjob-error" />
         </PopupWithForm>
         
         <PopupWithForm 
@@ -86,7 +108,7 @@ function closeAllPopups() {
       isOpen={isAddPlacePopupOpen}
       onClose={closeAllPopups}>
         <input
-          id="nameOfPicture"
+          id="usertittle"
           name="name"
           type="text"
           minLength="2"
@@ -94,32 +116,18 @@ function closeAllPopups() {
           placeholder="Название"
           className="popup__input"
           required />
-        <span className="popup__error popup__error_visible nameOfPicture-error" />
+        <span className="popup__error  usertittle-error" />
         <input
-          id="linkOfPicture"
+          id="userlink"
           name="link"
           type="url"
           placeholder="Ссылка на картинку"
           className="popup__input"
           required />
-        <span className="popup__error popup__error_visible userlink-error" />
+        <span className="popup__error  userlink-error" />
       </PopupWithForm>
 
-      <PopupWithForm 
-      name="avatar" 
-      title="Обновить аватар"
-      submitName="Сохранить"
-      isOpen={isEditAvatarPopupOpen}
-      onClose={closeAllPopups}>
-        <input
-          id="avatar-link"
-          name="avatar"
-          type="url"
-          placeholder="Ссылка на картинку"
-          className="popup__input popup__avatar-link"
-          required />
-        <span className="popup__error popup__error_visible avatar-link-error"></span>
-      </PopupWithForm>
+
 
       <PopupWithForm 
       name="delete"
@@ -128,19 +136,10 @@ function closeAllPopups() {
       onClose={closeAllPopups}
       />
 
-        <template id="card__template">
-            <div className="card">
-                <img className="card__image"/>
-                <button className="card__trash" type="button"></button>
-                <div className="card__description">
-                    <h2 className="card__text"></h2>
-                    <div className="card__container">
-                        <button className="card__like" type="button"></button>
-                        <div className="card__like__counter">0</div>
-                    </div>
-                </div>
-            </div>
-        </template>
+      <ImagePopup 
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
     </div>
 </div>
   );
