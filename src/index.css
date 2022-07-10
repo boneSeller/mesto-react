@@ -62,6 +62,7 @@
 @import url('./blocks/card/__like/__counter/card__like__counter.css');
 @import url('./blocks/card/__like/_active/card__like_active.css');
 @import url('./blocks/card/__trash/card__trash.css');
+@import url('./blocks/card/__trash/_hidden/card__trash-hidden.css');
 
 
 /*COPYRIGHT*/

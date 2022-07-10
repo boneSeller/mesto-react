@@ -1,24 +1,45 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card(props) {
+function Card({card, onCardClick, onCardLike, onCardDelete}) {
+  const currentUser = React.useContext(CurrentUserContext);
+
+  // Определяем, являемся ли мы владельцем текущей карточки
+  const isOwn = card.owner._id === currentUser._id;
+
+  // Создаём переменную, которую после зададим в `className` для кнопки удаления
+  const cardDeleteButtonClassName = (
+  `card__trash ${isOwn ? '' : 'card__trash-hidden'}`
+    ); 
+
+    // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
+  const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+  // Создаём переменную, которую после зададим в `className` для кнопки лайка
+  const cardLikeButtonClassName = `card__like ${isLiked && 'card__like_active'}`; 
+
   function handleClick() {
-    props.onCardClick(props.card);
+    onCardClick(card);
+  }
+
+  function handleLikeClick() {
+    onCardLike(card);
   }
 
   return (
     <div className="card">
       <img
         className="card__image"
-        alt={props.card.name}
-        src={props.card.link}
+        alt={card.name}
+        src={card.link}
         onClick={handleClick}
       />
-      <button className="card__trash" type="button"></button>
+      <button className={cardDeleteButtonClassName} type="button"></button>
       <div className="card__description">
-        <h2 className="card__text">{props.card.name}</h2>
+        <h2 className="card__text">{card.name}</h2>
         <div className="card__container">
-          <button className="card__like" type="button"></button>
-          <div className="card__like__counter">{props.card.likes.length}</div>
+          <button className={cardLikeButtonClassName} type="button" onClick={handleLikeClick}></button>
+          <div className="card__like__counter">{card.likes.length}</div>
         </div>
       </div>
     </div>

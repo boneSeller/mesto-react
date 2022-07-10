@@ -13,6 +13,7 @@
     width: 18px;
     height: 19px;
     position: absolute;
+    visibility: visible;
 }
 
 .card__trash:hover {

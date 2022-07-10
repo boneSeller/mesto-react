@@ -4,7 +4,7 @@ function ImagePopup({ card, onClose }) {
   return (
     <section
       id="popup-image"
-      className={`popup popup_image ${card.link && `popup_opened`}`}
+      className={`popup popup_image ${card.link ? `popup_opened` : ''}`}
     >
       <div className="popup__body">
         <div className="popup__container">
