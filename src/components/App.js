@@ -54,6 +54,9 @@ function App() {
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    })
+    .catch((err) => {
+      console.log(err);
     });
 }
 
@@ -61,6 +64,9 @@ function App() {
     api.deleteCard(card._id).then(() => {
       setCards((state => state.filter((item) => item !== card)))      
     })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   function handleUpdateAvatar(data) {
@@ -107,8 +113,8 @@ function App() {
       setCards([res,...cards]);
       closeAllPopups();
     })
-      .catch((err) => {
-        console.log(err)
+    .catch((err) => {
+      console.log(err)
     })
     .finally(() => {
       setShowLoading(false);

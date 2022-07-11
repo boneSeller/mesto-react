@@ -10,7 +10,7 @@ function EditProfilePopup(props) {
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-      }, [currentUser]); 
+      }, [currentUser, props.isOpen]); 
 
       function handleSubmit(e) {
         // Запрещаем браузеру переходить по адресу формы
@@ -50,6 +50,7 @@ function EditProfilePopup(props) {
             className="popup__input"
             placeholder="Имя"
             onChange={handleNameChange}
+            value={name || ""} 
           />
           <span className="popup__error  username-error" />
           <input
@@ -62,6 +63,7 @@ function EditProfilePopup(props) {
             className="popup__input"
             placeholder="Профессиональная деятельность"
             onChange={handleDescriptionChange}
+            value={name || ""} 
           />
           <span className="popup__error  userjob-error" />
         </PopupWithForm>

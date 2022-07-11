@@ -40,6 +40,7 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, showLoading}) {
             placeholder="Название"
             className="popup__input"
             onChange={handleNameChange}
+            value={name || ""}
             required
           />
           <span className="popup__error  usertittle-error" />
@@ -49,6 +50,7 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, showLoading}) {
             type="url"
             placeholder="Ссылка на картинку"
             className="popup__input"
+            value={link || ""}
             required
             onChange={handleLinkChange}
           />
